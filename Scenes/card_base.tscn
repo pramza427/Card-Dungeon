@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://t3tbnql3t8eb"]
+
+[ext_resource type="Script" path="res://Scenes/card_base.gd" id="1_xxvb2"]
+[ext_resource type="Texture2D" uid="uid://bj5pa6wqtyfug" path="res://Assets/CardImages/Border.png" id="2_5a6p7"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2tyr3"]
+specular_color = Color(0, 0.713726, 0.811765, 1)
+
+[node name="CardBase" type="MarginContainer"]
+offset_right = 125.0
+offset_bottom = 175.0
+pivot_offset = Vector2(125, 175)
+script = ExtResource("1_xxvb2")
+
+[node name="Image" type="Sprite2D" parent="."]
+centered = false
+
+[node name="Border" type="Sprite2D" parent="."]
+texture = ExtResource("2_5a6p7")
+centered = false
+
+[node name="Content" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="Bars" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Name" type="MarginContainer" parent="Content/Bars"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/Bars/Name"]
+layout_mode = 2
+text = "Defend"
+horizontal_alignment = 1
+
+[node name="Amount" type="MarginContainer" parent="Content/Bars"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/Bars/Amount"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1
+
+[node name="Focus" type="TextureButton" parent="."]
+layout_mode = 2
+texture_hover = SubResource("CanvasTexture_2tyr3")
+
+[connection signal="mouse_entered" from="Focus" to="." method="_on_focus_mouse_entered"]
+[connection signal="mouse_exited" from="Focus" to="." method="_on_focus_mouse_exited"]
+[connection signal="pressed" from="Focus" to="." method="_on_focus_pressed"]

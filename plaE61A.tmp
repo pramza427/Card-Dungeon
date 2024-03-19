@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cborbpl4sgn0q"]
+
+[ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_7ml52"]
+[ext_resource type="Texture2D" uid="uid://c8wncditunibt" path="res://Assets/Art/bg.png" id="2_v0h2r"]
+[ext_resource type="Texture2D" uid="uid://hovsxvhy8a47" path="res://Assets/CardImages/CardBack.jpg" id="3_h26n7"]
+[ext_resource type="Texture2D" uid="uid://bj5pa6wqtyfug" path="res://Assets/CardImages/Border.png" id="4_bgows"]
+[ext_resource type="Script" path="res://DeckDraw.gd" id="5_ll4sh"]
+
+[node name="Playspace" type="Node2D"]
+script = ExtResource("1_7ml52")
+
+[node name="Cards" type="Node" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576.5, 324)
+scale = Vector2(2.24805, 1.26563)
+texture = ExtResource("2_v0h2r")
+
+[node name="Deck" type="Node2D" parent="."]
+
+[node name="DeckDraw" type="TextureButton" parent="Deck"]
+clip_contents = true
+offset_left = 1013.0
+offset_top = 457.0
+offset_right = 1119.0
+offset_bottom = 614.0
+texture_normal = ExtResource("3_h26n7")
+texture_pressed = ExtResource("3_h26n7")
+texture_hover = ExtResource("3_h26n7")
+texture_disabled = ExtResource("4_bgows")
+ignore_texture_size = true
+script = ExtResource("5_ll4sh")

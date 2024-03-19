@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cborbpl4sgn0q"]
+
+[ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_7ml52"]
+[ext_resource type="Texture2D" uid="uid://c8wncditunibt" path="res://Assets/Art/bg.png" id="2_v0h2r"]
+
+[node name="Playspace" type="Node2D"]
+script = ExtResource("1_7ml52")
+
+[node name="Cards" type="Node" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576.5, 324)
+scale = Vector2(2.24805, 1.26563)
+texture = ExtResource("2_v0h2r")
