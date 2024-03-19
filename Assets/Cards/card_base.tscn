@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://t3tbnql3t8eb"]
 
-[ext_resource type="Script" path="res://Scenes/card_base.gd" id="1_xxvb2"]
-[ext_resource type="Texture2D" uid="uid://bj5pa6wqtyfug" path="res://Assets/CardImages/Border.png" id="2_5a6p7"]
+[ext_resource type="Script" path="res://Assets/Cards/card_base.gd" id="1_hujcr"]
+[ext_resource type="Texture2D" uid="uid://bj5pa6wqtyfug" path="res://Assets/Cards/CardImages/Border.png" id="2_i7ew3"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_2tyr3"]
 specular_color = Color(0, 0.713726, 0.811765, 1)
@@ -10,13 +10,13 @@ specular_color = Color(0, 0.713726, 0.811765, 1)
 offset_right = 125.0
 offset_bottom = 175.0
 pivot_offset = Vector2(125, 175)
-script = ExtResource("1_xxvb2")
+script = ExtResource("1_hujcr")
 
 [node name="Image" type="Sprite2D" parent="."]
 centered = false
 
 [node name="Border" type="Sprite2D" parent="."]
-texture = ExtResource("2_5a6p7")
+texture = ExtResource("2_i7ew3")
 centered = false
 
 [node name="Content" type="CenterContainer" parent="."]

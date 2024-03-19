@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn7v0xb3grwfc"
-path="res://.godot/imported/DiscardButton.png-4b49916dddc350a52e4603867b20352a.ctex"
+uid="uid://lwf4bjkpcl3c"
+path="res://.godot/imported/pierce.png-e845a1b6e6235ee9557b835f2a9bb9db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/GUI Elements/DiscardButton.png"
-dest_files=["res://.godot/imported/DiscardButton.png-4b49916dddc350a52e4603867b20352a.ctex"]
+source_file="res://Assets/Cards/CardImages/pierce.png"
+dest_files=["res://.godot/imported/pierce.png-e845a1b6e6235ee9557b835f2a9bb9db.ctex"]
 
 [params]
 

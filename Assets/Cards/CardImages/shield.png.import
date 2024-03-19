@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mauyerjtcehc"
-path="res://.godot/imported/emeralds_icon.png-a509bab7a94d1202790b5c3a990915a0.ctex"
+uid="uid://j2iw1wolk3wm"
+path="res://.godot/imported/shield.png-5a5bd3ffdc4264a29aa4dffefdbd47ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/GUI Elements/emeralds_icon.png"
-dest_files=["res://.godot/imported/emeralds_icon.png-a509bab7a94d1202790b5c3a990915a0.ctex"]
+source_file="res://Assets/Cards/CardImages/shield.png"
+dest_files=["res://.godot/imported/shield.png-5a5bd3ffdc4264a29aa4dffefdbd47ec.ctex"]
 
 [params]
 

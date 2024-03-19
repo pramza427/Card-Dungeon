@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lwf4bjkpcl3c"
-path="res://.godot/imported/pierce.png-8cca8801f5a5bfbceda9112208cfdb87.ctex"
+uid="uid://bj5pa6wqtyfug"
+path="res://.godot/imported/Border.png-498d5f1d26249bc89d005d69079d6fd2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/CardImages/pierce.png"
-dest_files=["res://.godot/imported/pierce.png-8cca8801f5a5bfbceda9112208cfdb87.ctex"]
+source_file="res://Assets/Cards/CardImages/Border.png"
+dest_files=["res://.godot/imported/Border.png-498d5f1d26249bc89d005d69079d6fd2.ctex"]
 
 [params]
 

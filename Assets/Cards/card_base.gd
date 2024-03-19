@@ -1,10 +1,10 @@
 extends MarginContainer
 
-@onready var CardDatabase = preload("res://Scripts/CardDatabase.gd").new()
+@onready var CardDatabase = preload("res://Assets/Cards/CardDatabase.gd").new()
 var CardName = "Defend"
 @onready var CardInfo = CardDatabase.DECK[CardDatabase.get(CardName)]
 
-@onready var CardImg = str("res://Assets/CardImages/", CardInfo[3])
+@onready var CardImg = str("res://Assets/Cards/CardImages/", CardInfo[3])
 
 var startpos = Vector2()
 var targetpos = Vector2()

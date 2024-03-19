@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6ky1su8q1ifk"
-path="res://.godot/imported/lifebar_bg.png-92a9dd67355a38d8544663e705668b6b.ctex"
+uid="uid://dx0e1rfwsuvb"
+path="res://.godot/imported/bludgeon.png-6ed463a4c75fa07d8b0e4e400d99be46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/GUI Elements/lifebar_bg.png"
-dest_files=["res://.godot/imported/lifebar_bg.png-92a9dd67355a38d8544663e705668b6b.ctex"]
+source_file="res://Assets/Cards/CardImages/bludgeon.png"
+dest_files=["res://.godot/imported/bludgeon.png-6ed463a4c75fa07d8b0e4e400d99be46.ctex"]
 
 [params]
 

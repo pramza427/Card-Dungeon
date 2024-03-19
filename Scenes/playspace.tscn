@@ -1,0 +1,275 @@
+[gd_scene load_steps=21 format=3 uid="uid://cborbpl4sgn0q"]
+
+[ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_sn3uh"]
+[ext_resource type="Texture2D" uid="uid://c8wncditunibt" path="res://Assets/Art/bg.png" id="2_ntfse"]
+[ext_resource type="Texture2D" uid="uid://ft0qbmi771sl" path="res://Assets/GUI Elements/HP_bg.png" id="3_ggbb1"]
+[ext_resource type="Texture2D" uid="uid://c6uiu74lr3hyy" path="res://Assets/GUI Elements/label_HP.png" id="4_pvtmw"]
+[ext_resource type="Texture2D" uid="uid://cu11huuj40ux0" path="res://Assets/GUI Elements/player_health_bg.png" id="5_2lhxu"]
+[ext_resource type="Texture2D" uid="uid://b2x5jmk5hsexc" path="res://Assets/GUI Elements/player_health_fill.png" id="6_wr1a3"]
+[ext_resource type="Texture2D" uid="uid://cnha72ikvcjf8" path="res://Assets/GUI Elements/coins_bg.png" id="7_15kau"]
+[ext_resource type="Texture2D" uid="uid://iuobd2knypsu" path="res://Assets/GUI Elements/Coin.png" id="8_uuqs3"]
+[ext_resource type="Texture2D" uid="uid://eh3yjhjenwgd" path="res://Assets/GUI Elements/potions_bg.png" id="9_4awrb"]
+[ext_resource type="Texture2D" uid="uid://umx31t5dhhmx" path="res://Assets/GUI Elements/weapon_bg.png" id="10_fhaiq"]
+[ext_resource type="Texture2D" uid="uid://b7yphi2liwjr8" path="res://Assets/GUI Elements/shield_bg.png" id="11_gm66h"]
+[ext_resource type="Texture2D" uid="uid://ba2gs3oxssay3" path="res://Assets/GUI Elements/label_HP_bg.png" id="12_stw17"]
+[ext_resource type="Texture2D" uid="uid://cd0fvpqcm2buy" path="res://Assets/GUI Elements/EnemyHealthBG.png" id="13_ggx7q"]
+[ext_resource type="Texture2D" uid="uid://codqe8ci1ouha" path="res://Assets/GUI Elements/EnemyHealthProgress.png" id="14_asbp4"]
+[ext_resource type="Texture2D" uid="uid://ba1xb8a11i0ww" path="res://Assets/GUI Elements/green_btn.png" id="15_xfriw"]
+[ext_resource type="Texture2D" uid="uid://bxv7hxv75l1h6" path="res://Assets/GUI Elements/red_btn.png" id="16_jb2iu"]
+[ext_resource type="Script" path="res://Scripts/Deck.gd" id="17_edk26"]
+[ext_resource type="Texture2D" uid="uid://hovsxvhy8a47" path="res://Assets/Cards/CardImages/CardBack.jpg" id="18_klaj0"]
+[ext_resource type="Texture2D" uid="uid://bj5pa6wqtyfug" path="res://Assets/Cards/CardImages/Border.png" id="19_m7avw"]
+
+[sub_resource type="GDScript" id="GDScript_3l1la"]
+script/source = "extends TextureButton
+
+var Deck = []
+
+func _ready():
+	scale *= $'../../'.CardSize/size
+	
+
+
+"
+
+[node name="Playspace" type="Node2D"]
+script = ExtResource("1_sn3uh")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960.75, 541.999)
+scale = Vector2(3.75879, 2.10938)
+texture = ExtResource("2_ntfse")
+
+[node name="GUI" type="MarginContainer" parent="."]
+offset_top = 1.0
+offset_right = 1922.0
+offset_bottom = 1086.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="PlayerInfo" type="VBoxContainer" parent="GUI"]
+layout_mode = 2
+
+[node name="Bars" type="VBoxContainer" parent="GUI/PlayerInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Bar" type="HBoxContainer" parent="GUI/PlayerInfo/Bars"]
+layout_mode = 2
+
+[node name="HP" type="MarginContainer" parent="GUI/PlayerInfo/Bars/Bar"]
+layout_mode = 2
+
+[node name="bg" type="TextureRect" parent="GUI/PlayerInfo/Bars/Bar/HP"]
+layout_mode = 2
+texture = ExtResource("3_ggbb1")
+
+[node name="Magin" type="MarginContainer" parent="GUI/PlayerInfo/Bars/Bar/HP/bg"]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 50.0
+theme_override_constants/margin_left = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/PlayerInfo/Bars/Bar/HP/bg/Magin"]
+layout_mode = 2
+
+[node name="Title" type="TextureRect" parent="GUI/PlayerInfo/Bars/Bar/HP/bg/Magin/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_pvtmw")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="Number" type="Label" parent="GUI/PlayerInfo/Bars/Bar/HP/bg/Magin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Margin" type="MarginContainer" parent="GUI/PlayerInfo/Bars/Bar"]
+layout_mode = 2
+theme_override_constants/margin_left = -40
+
+[node name="HPBar" type="TextureProgressBar" parent="GUI/PlayerInfo/Bars/Bar/Margin"]
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("5_2lhxu")
+texture_progress = ExtResource("6_wr1a3")
+
+[node name="Counters" type="HBoxContainer" parent="GUI/PlayerInfo"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/PlayerInfo/Counters"]
+layout_mode = 2
+
+[node name="Money" type="MarginContainer" parent="GUI/PlayerInfo/Counters/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="GUI/PlayerInfo/Counters/HBoxContainer/Money"]
+layout_mode = 2
+texture = ExtResource("7_15kau")
+
+[node name="Margin" type="MarginContainer" parent="GUI/PlayerInfo/Counters/HBoxContainer/Money/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+offset_right = -25.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/PlayerInfo/Counters/HBoxContainer/Money/TextureRect/Margin"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="GUI/PlayerInfo/Counters/HBoxContainer/Money/TextureRect/Margin/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_uuqs3")
+stretch_mode = 2
+
+[node name="Number" type="Label" parent="GUI/PlayerInfo/Counters/HBoxContainer/Money/TextureRect/Margin/HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/PlayerInfo/Counters/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -40
+
+[node name="TextureRect" type="TextureRect" parent="GUI/PlayerInfo/Counters/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_4awrb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/PlayerInfo"]
+layout_mode = 2
+
+[node name="Sword" type="TextureRect" parent="GUI/PlayerInfo/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_fhaiq")
+
+[node name="Shield" type="TextureRect" parent="GUI/PlayerInfo/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_gm66h")
+
+[node name="EnemyInfo" type="VBoxContainer" parent="GUI"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Margin" type="MarginContainer" parent="GUI/EnemyInfo"]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
+[node name="Bg" type="NinePatchRect" parent="GUI/EnemyInfo/Margin"]
+layout_mode = 2
+texture = ExtResource("12_stw17")
+
+[node name="Margin" type="MarginContainer" parent="GUI/EnemyInfo/Margin"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Health" type="Label" parent="GUI/EnemyInfo/Margin/Margin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "300"
+
+[node name="HealthBar" type="TextureProgressBar" parent="GUI/EnemyInfo"]
+layout_mode = 2
+size_flags_horizontal = 4
+value = 100.0
+fill_mode = 3
+texture_under = ExtResource("13_ggx7q")
+texture_progress = ExtResource("14_asbp4")
+
+[node name="Actions" type="HBoxContainer" parent="GUI"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Actions"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Actions/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Actions/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="TextureButton" parent="GUI/Actions/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("15_xfriw")
+
+[node name="Label" type="Label" parent="GUI/Actions/MarginContainer/MarginContainer/HBoxContainer/Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Actions/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Discard" type="TextureButton" parent="GUI/Actions/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("16_jb2iu")
+
+[node name="Label" type="Label" parent="GUI/Actions/MarginContainer/MarginContainer/HBoxContainer/Discard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Discard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hand" type="Node" parent="."]
+
+[node name="Deck" type="Node2D" parent="."]
+script = ExtResource("17_edk26")
+
+[node name="DeckDraw" type="TextureButton" parent="Deck"]
+clip_contents = true
+offset_left = 1664.0
+offset_top = 842.0
+offset_right = 2013.0
+offset_bottom = 1353.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("18_klaj0")
+texture_pressed = ExtResource("18_klaj0")
+texture_hover = ExtResource("18_klaj0")
+texture_disabled = ExtResource("19_m7avw")
+script = SubResource("GDScript_3l1la")

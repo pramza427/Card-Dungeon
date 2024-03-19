@@ -1,6 +1,6 @@
 extends Node2D
 
-const CardBase = preload("res://Scenes/card_base.tscn")
+const CardBase = preload("res://Assets/Cards/card_base.tscn")
 
 const CardSize = Vector2(125, 175)
 
@@ -34,3 +34,11 @@ func renderCards():
 		NewCard.CardPos = NewCard.targetpos
 		$'Hand'.add_child(NewCard)
 		start += steps
+
+
+func _on_play_pressed():
+	pass # Replace with function body.
+
+
+func _on_discard_pressed():
+	pass # Replace with function body.

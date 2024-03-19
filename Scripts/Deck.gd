@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@onready var CardDatabase = preload("res://Scripts/CardDatabase.gd")
+@onready var CardDatabase = preload("res://Assets/Cards/CardDatabase.gd")
 var DrawPile = []
 var DiscardPile = []
 
