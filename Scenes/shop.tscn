@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://ht0urhfod0mm"]
+
+[ext_resource type="Script" path="res://Scripts/shop.gd" id="1_afe23"]
+[ext_resource type="Texture2D" uid="uid://umx31t5dhhmx" path="res://Assets/GUI Elements/weapon_bg.png" id="1_kfi1b"]
+[ext_resource type="Texture2D" uid="uid://byc4qkkaqila3" path="res://Assets/Art/shop_bg.png" id="2_ym5xi"]
+[ext_resource type="Texture2D" uid="uid://b7yphi2liwjr8" path="res://Assets/GUI Elements/shield_bg.png" id="4_y85vn"]
+[ext_resource type="Texture2D" uid="uid://ba1xb8a11i0ww" path="res://Assets/GUI Elements/green_btn.png" id="6_regow"]
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_afe23")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(959, 535)
+texture = ExtResource("2_ym5xi")
+
+[node name="Margin" type="MarginContainer" parent="."]
+offset_top = 1.0
+offset_right = 1919.0
+offset_bottom = 1080.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Center" type="CenterContainer" parent="Margin"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Shop" type="Label" parent="Margin/Center"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.776471, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 100
+text = "Shop"
+
+[node name="Margin" type="MarginContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/margin_top = 400
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin/Margin"]
+layout_mode = 2
+
+[node name="Weapons" type="HBoxContainer" parent="Margin/Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Weapon1" type="TextureButton" parent="Margin/Margin/VBoxContainer/Weapons"]
+layout_mode = 2
+texture_normal = ExtResource("1_kfi1b")
+
+[node name="Weapon2" type="TextureButton" parent="Margin/Margin/VBoxContainer/Weapons"]
+layout_mode = 2
+texture_normal = ExtResource("1_kfi1b")
+
+[node name="Shields" type="HBoxContainer" parent="Margin/Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Shield1" type="TextureButton" parent="Margin/Margin/VBoxContainer/Shields"]
+layout_mode = 2
+texture_normal = ExtResource("4_y85vn")
+
+[node name="Shield2" type="TextureButton" parent="Margin/Margin/VBoxContainer/Shields"]
+layout_mode = 2
+texture_normal = ExtResource("4_y85vn")
+
+[node name="LeaveShop" type="TextureButton" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("6_regow")
+
+[node name="LeaveShop" type="Label" parent="Margin/LeaveShop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Leave"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeaponCards" type="Node" parent="."]
+
+[connection signal="pressed" from="Margin/LeaveShop" to="." method="_on_leave_shop_pressed"]

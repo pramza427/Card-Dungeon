@@ -1,0 +1,134 @@
+[gd_scene load_steps=11 format=3 uid="uid://dbo4ox1oxaal5"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_662bk"]
+[ext_resource type="Texture2D" uid="uid://ft0qbmi771sl" path="res://Assets/GUI Elements/HP_bg.png" id="2_qw75l"]
+[ext_resource type="Texture2D" uid="uid://c6uiu74lr3hyy" path="res://Assets/GUI Elements/label_HP.png" id="3_ctgaj"]
+[ext_resource type="Texture2D" uid="uid://cu11huuj40ux0" path="res://Assets/GUI Elements/player_health_bg.png" id="4_2pqaq"]
+[ext_resource type="Texture2D" uid="uid://b2x5jmk5hsexc" path="res://Assets/GUI Elements/player_health_fill.png" id="5_vrlqo"]
+[ext_resource type="Texture2D" uid="uid://cnha72ikvcjf8" path="res://Assets/GUI Elements/coins_bg.png" id="6_wger0"]
+[ext_resource type="Texture2D" uid="uid://iuobd2knypsu" path="res://Assets/GUI Elements/Coin.png" id="7_0dc3i"]
+[ext_resource type="Texture2D" uid="uid://eh3yjhjenwgd" path="res://Assets/GUI Elements/potions_bg.png" id="8_ratne"]
+[ext_resource type="Texture2D" uid="uid://umx31t5dhhmx" path="res://Assets/GUI Elements/weapon_bg.png" id="9_av7sn"]
+[ext_resource type="Texture2D" uid="uid://b7yphi2liwjr8" path="res://Assets/GUI Elements/shield_bg.png" id="10_twgyd"]
+
+[node name="Player" type="Node"]
+script = ExtResource("1_662bk")
+
+[node name="PlayerInfo" type="VBoxContainer" parent="."]
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 1912.0
+offset_bottom = 335.0
+
+[node name="Bars" type="VBoxContainer" parent="PlayerInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Bar" type="HBoxContainer" parent="PlayerInfo/Bars"]
+layout_mode = 2
+
+[node name="HP" type="MarginContainer" parent="PlayerInfo/Bars/Bar"]
+layout_mode = 2
+
+[node name="bg" type="TextureRect" parent="PlayerInfo/Bars/Bar/HP"]
+layout_mode = 2
+texture = ExtResource("2_qw75l")
+
+[node name="Magin" type="MarginContainer" parent="PlayerInfo/Bars/Bar/HP/bg"]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 50.0
+theme_override_constants/margin_left = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerInfo/Bars/Bar/HP/bg/Magin"]
+layout_mode = 2
+
+[node name="Title" type="TextureRect" parent="PlayerInfo/Bars/Bar/HP/bg/Magin/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_ctgaj")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="Number" type="Label" parent="PlayerInfo/Bars/Bar/HP/bg/Magin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Margin" type="MarginContainer" parent="PlayerInfo/Bars/Bar"]
+layout_mode = 2
+theme_override_constants/margin_left = -40
+
+[node name="HPBar" type="TextureProgressBar" parent="PlayerInfo/Bars/Bar/Margin"]
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("4_2pqaq")
+texture_progress = ExtResource("5_vrlqo")
+
+[node name="Counters" type="HBoxContainer" parent="PlayerInfo"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerInfo/Counters"]
+layout_mode = 2
+
+[node name="Money" type="MarginContainer" parent="PlayerInfo/Counters/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="PlayerInfo/Counters/HBoxContainer/Money"]
+layout_mode = 2
+texture = ExtResource("6_wger0")
+
+[node name="Margin" type="MarginContainer" parent="PlayerInfo/Counters/HBoxContainer/Money/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+offset_right = -25.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerInfo/Counters/HBoxContainer/Money/TextureRect/Margin"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="PlayerInfo/Counters/HBoxContainer/Money/TextureRect/Margin/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_0dc3i")
+stretch_mode = 2
+
+[node name="Number" type="Label" parent="PlayerInfo/Counters/HBoxContainer/Money/TextureRect/Margin/HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayerInfo/Counters/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -40
+
+[node name="TextureRect" type="TextureRect" parent="PlayerInfo/Counters/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_ratne")
+
+[node name="Weapons" type="HBoxContainer" parent="PlayerInfo"]
+layout_mode = 2
+
+[node name="Sword" type="TextureRect" parent="PlayerInfo/Weapons"]
+layout_mode = 2
+texture = ExtResource("9_av7sn")
+
+[node name="Shield" type="TextureRect" parent="PlayerInfo/Weapons"]
+layout_mode = 2
+texture = ExtResource("10_twgyd")

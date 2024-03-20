@@ -19,31 +19,28 @@ centered = false
 texture = ExtResource("2_i7ew3")
 centered = false
 
-[node name="Content" type="CenterContainer" parent="."]
+[node name="Focus" type="TextureButton" parent="."]
+layout_mode = 2
+texture_hover = SubResource("CanvasTexture_2tyr3")
+
+[node name="Bars" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Bars" type="VBoxContainer" parent="Content"]
+[node name="Name" type="MarginContainer" parent="Bars"]
 layout_mode = 2
 
-[node name="Name" type="MarginContainer" parent="Content/Bars"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Content/Bars/Name"]
+[node name="Label" type="Label" parent="Bars/Name"]
 layout_mode = 2
 text = "Defend"
 horizontal_alignment = 1
 
-[node name="Amount" type="MarginContainer" parent="Content/Bars"]
+[node name="Amount" type="MarginContainer" parent="Bars"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Content/Bars/Amount"]
+[node name="Label" type="Label" parent="Bars/Amount"]
 layout_mode = 2
 text = "10"
 horizontal_alignment = 1
-
-[node name="Focus" type="TextureButton" parent="."]
-layout_mode = 2
-texture_hover = SubResource("CanvasTexture_2tyr3")
 
 [connection signal="mouse_entered" from="Focus" to="." method="_on_focus_mouse_entered"]
 [connection signal="mouse_exited" from="Focus" to="." method="_on_focus_mouse_exited"]

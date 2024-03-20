@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=3 uid="uid://t6if4m6xopen"]
+
+[ext_resource type="Script" path="res://Scripts/WeaponCard.gd" id="1_00scg"]
+[ext_resource type="Texture2D" uid="uid://bj5pa6wqtyfug" path="res://Assets/Cards/CardImages/Border.png" id="2_fedjf"]
+
+[node name="WeaponCard" type="MarginContainer"]
+offset_right = 109.0
+offset_bottom = 196.0
+script = ExtResource("1_00scg")
+
+[node name="Border" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_fedjf")
+centered = false
+
+[node name="InfoContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="InfoContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Info" type="VBoxContainer" parent="InfoContainer/Margin"]
+layout_mode = 2
+
+[node name="Center" type="CenterContainer" parent="InfoContainer/Margin/Info"]
+layout_mode = 2
+
+[node name="WeaponName" type="Label" parent="InfoContainer/Margin/Info/Center"]
+layout_mode = 2
+text = "Sword"
+
+[node name="Hands" type="HBoxContainer" parent="InfoContainer/Margin/Info"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="NumberHands" type="Label" parent="InfoContainer/Margin/Info/Hands"]
+layout_mode = 2
+
+[node name="Handed" type="Label" parent="InfoContainer/Margin/Info/Hands"]
+layout_mode = 2
+text = "Handed"
+
+[node name="SlashContainer" type="HBoxContainer" parent="InfoContainer/Margin/Info"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Slash" type="Label" parent="InfoContainer/Margin/Info/SlashContainer"]
+layout_mode = 2
+text = "Slash:"
+
+[node name="Multi" type="Label" parent="InfoContainer/Margin/Info/SlashContainer"]
+layout_mode = 2
+
+[node name="ChopContainer" type="HBoxContainer" parent="InfoContainer/Margin/Info"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Chop" type="Label" parent="InfoContainer/Margin/Info/ChopContainer"]
+layout_mode = 2
+text = "Chop:"
+
+[node name="Multi" type="Label" parent="InfoContainer/Margin/Info/ChopContainer"]
+layout_mode = 2
+
+[node name="BludgeonContainer" type="HBoxContainer" parent="InfoContainer/Margin/Info"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Bludgeon" type="Label" parent="InfoContainer/Margin/Info/BludgeonContainer"]
+layout_mode = 2
+text = "Bludgeon:"
+
+[node name="Multi" type="Label" parent="InfoContainer/Margin/Info/BludgeonContainer"]
+layout_mode = 2
+
+[node name="PierceContainer" type="HBoxContainer" parent="InfoContainer/Margin/Info"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Pierce" type="Label" parent="InfoContainer/Margin/Info/PierceContainer"]
+layout_mode = 2
+text = "Pierce:"
+
+[node name="Multi" type="Label" parent="InfoContainer/Margin/Info/PierceContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2

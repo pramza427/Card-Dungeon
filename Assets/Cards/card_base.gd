@@ -1,10 +1,9 @@
 extends MarginContainer
 
 @onready var CardDatabase = preload("res://Assets/Cards/CardDatabase.gd").new()
-var CardName = "Defend"
-@onready var CardInfo = CardDatabase.DECK[CardDatabase.get(CardName)]
+var CardInfo = [0, 0, "Defend", 10, "shield.png"]
 
-@onready var CardImg = str("res://Assets/Cards/CardImages/", CardInfo[3])
+@onready var CardImg = str("res://Assets/Cards/CardImages/", CardInfo[4])
 
 var startpos = Vector2()
 var targetpos = Vector2()
@@ -29,8 +28,8 @@ func _ready():
 	$Image.texture = load(CardImg)
 	$Image.scale *= CardSize/($Image.texture.get_size())
 	$Focus.scale *= CardSize/($Focus.size)
-	var Attack = CardInfo[2]
-	var CardName = CardInfo[1]
+	var Attack = CardInfo[3]
+	var CardName = CardInfo[2]
 	$Content/Bars/Name/Label.text = CardName
 	$Content/Bars/Amount/Label.text = str(Attack)
 	
