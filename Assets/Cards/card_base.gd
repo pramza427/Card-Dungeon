@@ -28,19 +28,22 @@ func _ready():
 	$Image.texture = load(CardImg)
 	$Image.scale *= CardSize/($Image.texture.get_size())
 	$Focus.scale *= CardSize/($Focus.size)
+	print(CardSize)
+	print($Focus.size)
+	print($Focus.scale)
 	var Attack = CardInfo[3]
 	var CardName = CardInfo[2]
-	$Content/Bars/Name/Label.text = CardName
-	$Content/Bars/Amount/Label.text = str(Attack)
+	$Bars/Name/Label.text = CardName
+	$Bars/Amount/Label.text = str(Attack)
 	
-	if CardInfo[0] == 0 :
+	if CardInfo[1] == 0 :
 		$Border.modulate = "#343da3"
-		$Content/Bars/Name/Label.modulate = "#343da3"
-		$Content/Bars/Amount/Label.modulate = "#343da3"
+		$Bars/Name/Label.modulate = "#343da3"
+		$Bars/Amount/Label.modulate = "#343da3"
 	else:
 		$Border.modulate = "#9c0031"
-		$Content/Bars/Name/Label.modulate = "#9c0031"
-		$Content/Bars/Amount/Label.modulate = "#9c0031"
+		$Bars/Name/Label.modulate = "#9c0031"
+		$Bars/Amount/Label.modulate = "#9c0031"
 
 
 var ZoomInSize = 1.2
@@ -76,7 +79,6 @@ func _physics_process(delta):
 				position = startpos.lerp(targetpos, t)
 				scale = startscale * (1-t) + OgScale*ZoomInSize*t
 				t += delta/float(ZoomInTime)
-				
 			else:
 				scale = OgScale*ZoomInSize
 		Selected:
@@ -86,6 +88,7 @@ func _physics_process(delta):
 				position = startpos.lerp(targetpos, t)
 				t += delta/float(ZoomInTime)
 			else:
+				scale = OgScale*ZoomInSize
 				position = targetpos
 		InPlay:
 			pass

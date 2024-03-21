@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://cborbpl4sgn0q"]
+[gd_scene load_steps=16 format=3 uid="uid://cborbpl4sgn0q"]
 
-[ext_resource type="Script" path="res://Scripts/shop.gd" id="1_ajh8g"]
+[ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_s00ji"]
 [ext_resource type="Texture2D" uid="uid://c8wncditunibt" path="res://Assets/Art/bg.png" id="2_ntfse"]
 [ext_resource type="Texture2D" uid="uid://ft0qbmi771sl" path="res://Assets/GUI Elements/HP_bg.png" id="3_ggbb1"]
 [ext_resource type="Texture2D" uid="uid://c6uiu74lr3hyy" path="res://Assets/GUI Elements/label_HP.png" id="4_pvtmw"]
@@ -12,22 +12,19 @@
 [ext_resource type="Texture2D" uid="uid://eh3yjhjenwgd" path="res://Assets/GUI Elements/potions_bg.png" id="9_4awrb"]
 [ext_resource type="Texture2D" uid="uid://umx31t5dhhmx" path="res://Assets/GUI Elements/weapon_bg.png" id="10_fhaiq"]
 [ext_resource type="Texture2D" uid="uid://b7yphi2liwjr8" path="res://Assets/GUI Elements/shield_bg.png" id="11_gm66h"]
-[ext_resource type="Texture2D" uid="uid://ba2gs3oxssay3" path="res://Assets/GUI Elements/label_HP_bg.png" id="12_stw17"]
-[ext_resource type="PackedScene" uid="uid://ht0urhfod0mm" path="res://Scenes/shop.tscn" id="13_0eury"]
-[ext_resource type="Texture2D" uid="uid://cd0fvpqcm2buy" path="res://Assets/GUI Elements/EnemyHealthBG.png" id="13_ggx7q"]
-[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="14_8ny5w"]
-[ext_resource type="Texture2D" uid="uid://codqe8ci1ouha" path="res://Assets/GUI Elements/EnemyHealthProgress.png" id="14_asbp4"]
 [ext_resource type="Texture2D" uid="uid://ba1xb8a11i0ww" path="res://Assets/GUI Elements/green_btn.png" id="15_xfriw"]
 [ext_resource type="Texture2D" uid="uid://bxv7hxv75l1h6" path="res://Assets/GUI Elements/red_btn.png" id="16_jb2iu"]
 [ext_resource type="Script" path="res://Scripts/Deck.gd" id="17_edk26"]
 
 [node name="Playspace" type="Node2D"]
-script = ExtResource("1_ajh8g")
+script = ExtResource("1_s00ji")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(960.75, 541.999)
 scale = Vector2(3.75879, 2.10938)
 texture = ExtResource("2_ntfse")
+
+[node name="Hand" type="Node" parent="."]
 
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(0, 800)
@@ -103,8 +100,6 @@ text = "24"
 [node name="DeckDraw" type="TextureRect" parent="Deck/Margin/HBox/DrawPileContainer"]
 layout_mode = 2
 texture = ExtResource("10_fhaiq")
-
-[node name="Hand" type="Node" parent="."]
 
 [node name="GUI" type="MarginContainer" parent="."]
 offset_top = 966.0
@@ -296,83 +291,6 @@ layout_mode = 2
 texture = ExtResource("11_gm66h")
 
 [node name="InPlay" type="Node" parent="."]
-
-[node name="Enemy" type="Node" parent="."]
-script = ExtResource("14_8ny5w")
-
-[node name="EnemyInfo" type="VBoxContainer" parent="Enemy"]
-offset_left = 1829.0
-offset_top = 1.0
-offset_right = 1924.0
-offset_bottom = 783.0
-size_flags_horizontal = 8
-
-[node name="LevelContainer" type="VBoxContainer" parent="Enemy/EnemyInfo"]
-layout_mode = 2
-
-[node name="Level" type="Label" parent="Enemy/EnemyInfo/LevelContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "Level:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LevelNumber" type="Label" parent="Enemy/EnemyInfo/LevelContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AttackContainer" type="VBoxContainer" parent="Enemy/EnemyInfo"]
-layout_mode = 2
-
-[node name="Attack" type="Label" parent="Enemy/EnemyInfo/AttackContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "Attack:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AttackPower" type="Label" parent="Enemy/EnemyInfo/AttackContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "10"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Margin" type="MarginContainer" parent="Enemy/EnemyInfo"]
-layout_mode = 2
-theme_override_constants/margin_top = 100
-
-[node name="Bg" type="NinePatchRect" parent="Enemy/EnemyInfo/Margin"]
-layout_mode = 2
-texture = ExtResource("12_stw17")
-
-[node name="Margin" type="MarginContainer" parent="Enemy/EnemyInfo/Margin"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Health" type="Label" parent="Enemy/EnemyInfo/Margin/Margin"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "30"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="HealthBar" type="TextureProgressBar" parent="Enemy/EnemyInfo"]
-layout_mode = 2
-size_flags_horizontal = 4
-value = 100.0
-fill_mode = 3
-texture_under = ExtResource("13_ggx7q")
-texture_progress = ExtResource("14_asbp4")
-
-[node name="Shop" parent="." instance=ExtResource("13_0eury")]
-position = Vector2(1952, 8)
 
 [connection signal="pressed" from="GUI/Actions/MarginContainer/MarginContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="GUI/Actions/MarginContainer/MarginContainer/HBoxContainer/Discard" to="." method="_on_discard_pressed"]

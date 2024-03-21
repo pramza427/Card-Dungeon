@@ -1,13 +1,51 @@
 
-enum {Sword, Axe, MorningStar, Dagger, LongSword, BattleAxe, Flail, Rapier, Claymore, GreatAxe, GrandMace, Spear}
-enum {Name, Hand, Slash, Chop, Bludgeon, Pierce, Price, Sell}
+enum {Buckler, KiteShield, TowerShield, Sword, Axe, MorningStar, Dagger, LongSword, BattleAxe, Flail, Rapier, Claymore, GreatAxe, GrandMace, Spear}
+enum {Name, Hand, Defend, Slash, Chop, Bludgeon, Pierce, Price, Sell}
 # Multiplier based on attack type
 const WEAPONS = {
+	## Shields
+	Buckler :
+		{
+			Name: "Buckler",
+			Hand: 1,
+			Defend: 3,
+			Slash : 1,
+			Chop : 1, 
+			Bludgeon : 1, 
+			Pierce : 1,
+			Price: 20,
+			Sell: 2
+		},
+	KiteShield :
+		{
+			Name: "KiteShield",
+			Hand: 1,
+			Defend: 5,
+			Slash : 3,
+			Chop : 2, 
+			Bludgeon : 0, 
+			Pierce : 1,
+			Price: 20,
+			Sell: 2
+		},
+	TowerShield :
+		{
+			Name: "TowerShield",
+			Hand: 1,
+			Defend: 8,
+			Slash : 1,
+			Chop : 1, 
+			Bludgeon : 1, 
+			Pierce : 1,
+			Price: 20,
+			Sell: 2
+		},
 	## Small Weapons
 	Sword :
 		{
 			Name: "Sword",
 			Hand: 1,
+			Defend: 1,
 			Slash : 3,
 			Chop : 2, 
 			Bludgeon : 0, 
@@ -19,6 +57,7 @@ const WEAPONS = {
 		{
 			Name: "Axe",
 			Hand : 1,
+			Defend: 1,
 			Slash : 2,
 			Chop : 3,
 			Bludgeon : 1, 
@@ -30,6 +69,7 @@ const WEAPONS = {
 		{
 			Name: "MorningStar",
 			Hand : 1,
+			Defend: 1,
 			Slash : 0, 
 			Chop : 1,
 			Bludgeon : 3, 
@@ -41,6 +81,7 @@ const WEAPONS = {
 		{
 			Name: "Dagger",
 			Hand : 1,
+			Defend: 1,
 			Slash : 1, 
 			Chop : 0, 
 			Bludgeon : 1, 
@@ -53,6 +94,7 @@ const WEAPONS = {
 		{
 			Name: "LongSword",
 			Hand: 1,
+			Defend: 1,
 			Slash : 4, 
 			Chop : 3, 
 			Bludgeon : 0, 
@@ -64,6 +106,7 @@ const WEAPONS = {
 		{
 			Name: "BattleAxe",
 			Hand : 1,
+			Defend: 1,
 			Slash : 3,
 			Chop : 4,
 			Bludgeon : 2, 
@@ -75,6 +118,7 @@ const WEAPONS = {
 		{
 			Name: "Flail",
 			Hand : 1,
+			Defend: 1,
 			Slash : 0, 
 			Chop : 2,
 			Bludgeon : 4, 
@@ -86,6 +130,7 @@ const WEAPONS = {
 		{
 			Name: "Rapier",
 			Hand : 1,
+			Defend: 1,
 			Slash : 1, 
 			Chop : 0, 
 			Bludgeon : 1, 
@@ -98,6 +143,7 @@ const WEAPONS = {
 		{
 			Name: "Claymore",
 			Hand: 2,
+			Defend: 1,
 			Slash : 5, 
 			Chop : 4, 
 			Bludgeon : 0, 
@@ -109,6 +155,7 @@ const WEAPONS = {
 		{
 			Name: "GreatAxe",
 			Hand : 2,
+			Defend: 1,
 			Slash : 3,
 			Chop : 5,
 			Bludgeon : 2, 
@@ -120,6 +167,7 @@ const WEAPONS = {
 		{
 			Name: "GrandMace",
 			Hand : 2,
+			Defend: 1,
 			Slash : 0, 
 			Chop : 1,
 			Bludgeon : 10, 
@@ -131,6 +179,7 @@ const WEAPONS = {
 		{
 			Name: "Spear",
 			Hand : 2,
+			Defend: 1,
 			Slash : 1, 
 			Chop : 0,
 			Bludgeon : 2, 

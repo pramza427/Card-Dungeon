@@ -10,6 +10,9 @@ var coins = 20
 @onready var HPText = $PlayerInfo/Bars/Bar/HP/bg/Magin/HBoxContainer/Number
 @onready var CoinNumber = $PlayerInfo/Counters/HBoxContainer/Money/TextureRect/Margin/HBoxContainer/Number
 
+var Weapons = []
+var Shields = []
+
 func _ready():
 	pass
 	

@@ -19,10 +19,6 @@ centered = false
 texture = ExtResource("2_i7ew3")
 centered = false
 
-[node name="Focus" type="TextureButton" parent="."]
-layout_mode = 2
-texture_hover = SubResource("CanvasTexture_2tyr3")
-
 [node name="Bars" type="VBoxContainer" parent="."]
 layout_mode = 2
 
@@ -41,6 +37,10 @@ layout_mode = 2
 layout_mode = 2
 text = "10"
 horizontal_alignment = 1
+
+[node name="Focus" type="TextureButton" parent="."]
+layout_mode = 2
+texture_hover = SubResource("CanvasTexture_2tyr3")
 
 [connection signal="mouse_entered" from="Focus" to="." method="_on_focus_mouse_entered"]
 [connection signal="mouse_exited" from="Focus" to="." method="_on_focus_mouse_exited"]

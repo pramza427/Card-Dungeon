@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfalebi1ly3ra"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_ulxeh"]
+[ext_resource type="Texture2D" uid="uid://ba2gs3oxssay3" path="res://Assets/GUI Elements/label_HP_bg.png" id="2_5xd2v"]
+[ext_resource type="Texture2D" uid="uid://cd0fvpqcm2buy" path="res://Assets/GUI Elements/EnemyHealthBG.png" id="3_uhyng"]
+[ext_resource type="Texture2D" uid="uid://codqe8ci1ouha" path="res://Assets/GUI Elements/EnemyHealthProgress.png" id="4_48ete"]
+
+[node name="Enemy" type="Node"]
+script = ExtResource("1_ulxeh")
+
+[node name="EnemyInfo" type="VBoxContainer" parent="."]
+offset_left = 1829.0
+offset_top = 1.0
+offset_right = 1924.0
+offset_bottom = 783.0
+size_flags_horizontal = 8
+
+[node name="LevelContainer" type="VBoxContainer" parent="EnemyInfo"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="EnemyInfo/LevelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Level:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelNumber" type="Label" parent="EnemyInfo/LevelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackContainer" type="VBoxContainer" parent="EnemyInfo"]
+layout_mode = 2
+
+[node name="Attack" type="Label" parent="EnemyInfo/AttackContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Attack:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackPower" type="Label" parent="EnemyInfo/AttackContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Margin" type="MarginContainer" parent="EnemyInfo"]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
+[node name="Bg" type="NinePatchRect" parent="EnemyInfo/Margin"]
+layout_mode = 2
+texture = ExtResource("2_5xd2v")
+
+[node name="Margin" type="MarginContainer" parent="EnemyInfo/Margin"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Health" type="Label" parent="EnemyInfo/Margin/Margin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "30"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="EnemyInfo"]
+layout_mode = 2
+size_flags_horizontal = 4
+value = 100.0
+fill_mode = 3
+texture_under = ExtResource("3_uhyng")
+texture_progress = ExtResource("4_48ete")

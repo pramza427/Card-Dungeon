@@ -1,6 +1,7 @@
 extends Node2D
 
 const CardBase = preload("res://Assets/Cards/card_base.tscn")
+const Enemy = preload("res://Scenes/enemy.tscn")
 
 const CardSize = Vector2(125, 175)
 
@@ -10,9 +11,17 @@ var PlaySize = 4
 var drawingCards = []
 var currentHand = []
 var currentPlay = []
+var currentLevel = 1
 
 func _ready() :
 	drawNewCards()
+	spawnEnemy()
+	
+func spawnEnemy():
+	var currentEnemy = Enemy.instantiate()
+	currentEnemy.level = currentLevel
+	add_child(currentEnemy)
+	
 	
 func drawNewCards():
 	drawingCards = $Deck.dealCards(HandSize - currentHand.size())
@@ -79,6 +88,7 @@ func playCards():
 	$Enemy.health -= attackFinal
 	
 	if $Enemy.health <= 0:
+		remove_child($Enemy)
 		clearBoard()
 	else:
 		$Player.takeDamage($Enemy.attackStrength)
@@ -91,7 +101,7 @@ func clearBoard():
 	for c in $Hand.get_children():
 		$Deck.discard(c.CardInfo)
 		$Hand.remove_child(c)
-	$Enemy.levelUp()
+	remove_child($Enemy)
 	$Deck.reset()
 	get_tree().change_scene_to_file("res://Scenes/shop.tscn")
 
