@@ -2,6 +2,7 @@ extends Node2D
 
 const CardBase = preload("res://Assets/Cards/card_base.tscn")
 const Enemy = preload("res://Scenes/enemy.tscn")
+@onready var FloorNumber = $FloorMargin/FloorCenter/HBox/FloorNumber
 
 const CardSize = Vector2(125, 175)
 
@@ -11,21 +12,29 @@ var PlaySize = 4
 var drawingCards = []
 var currentHand = []
 var currentPlay = []
-var currentLevel = 1
+var currentLevel = 0
 
 func _ready() :
+	pass
+	
+
+func nextLevel():
+	currentLevel += 1
+	FloorNumber.text = str(currentLevel)
 	drawNewCards()
 	spawnEnemy()
 	
+
 func spawnEnemy():
 	var currentEnemy = Enemy.instantiate()
 	currentEnemy.level = currentLevel
 	add_child(currentEnemy)
 	
-	
+
 func drawNewCards():
 	drawingCards = $Deck.dealCards(HandSize - currentHand.size())
 	renderNewCards()
+	
 
 func renderNewCards():
 	for card in drawingCards:
@@ -38,6 +47,7 @@ func renderNewCards():
 	drawingCards.clear()
 	organiseCards()
 	
+
 func organiseCards():
 	var allCardsWidth = CardSize.x * currentHand.size()
 	var start = 100
@@ -94,6 +104,7 @@ func playCards():
 		$Player.takeDamage($Enemy.attackStrength)
 		drawNewCards()
 
+
 func clearBoard():
 	drawingCards.clear()
 	currentHand.clear()
@@ -103,7 +114,7 @@ func clearBoard():
 		$Hand.remove_child(c)
 	remove_child($Enemy)
 	$Deck.reset()
-	get_tree().change_scene_to_file("res://Scenes/shop.tscn")
+	$Shop.setupShop()
 
 
 func _on_play_pressed():

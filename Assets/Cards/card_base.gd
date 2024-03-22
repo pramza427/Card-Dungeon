@@ -28,9 +28,6 @@ func _ready():
 	$Image.texture = load(CardImg)
 	$Image.scale *= CardSize/($Image.texture.get_size())
 	$Focus.scale *= CardSize/($Focus.size)
-	print(CardSize)
-	print($Focus.size)
-	print($Focus.scale)
 	var Attack = CardInfo[3]
 	var CardName = CardInfo[2]
 	$Bars/Name/Label.text = CardName

@@ -116,27 +116,32 @@ theme_override_font_sizes/font_size = 14
 [node name="ShopCost" type="Node2D" parent="."]
 position = Vector2(0, 200)
 
-[node name="Center" type="CenterContainer" parent="ShopCost"]
-offset_right = 134.0
+[node name="Margin" type="MarginContainer" parent="ShopCost"]
+offset_right = 150.0
 offset_bottom = 26.0
 size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
 
-[node name="HBox" type="HBoxContainer" parent="ShopCost/Center"]
+[node name="Center" type="CenterContainer" parent="ShopCost/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBox" type="HBoxContainer" parent="ShopCost/Margin/Center"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="Margin" type="MarginContainer" parent="ShopCost/Center/HBox"]
+[node name="Margin" type="MarginContainer" parent="ShopCost/Margin/Center/HBox"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="Coin" type="Sprite2D" parent="ShopCost/Center/HBox/Margin"]
+[node name="Coin" type="Sprite2D" parent="ShopCost/Margin/Center/HBox/Margin"]
 position = Vector2(-23, 0)
 texture = ExtResource("4_mmpmd")
 centered = false
 offset = Vector2(50, 10)
 
-[node name="Cost" type="Label" parent="ShopCost/Center/HBox"]
+[node name="Cost" type="Label" parent="ShopCost/Margin/Center/HBox"]
 layout_mode = 2
 text = "20"
 

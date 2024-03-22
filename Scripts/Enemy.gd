@@ -18,7 +18,7 @@ func _ready():
 
 func setHealth():
 	var tempHealth = 30
-	for n in range(level):
+	for n in range(level-1):
 		tempHealth += tempHealth/2
 	fullHealth = tempHealth 
 	health = tempHealth
@@ -28,7 +28,7 @@ func setHealth():
 	
 func setAttack():
 	var tempAttack = 10
-	for n in range(level):
+	for n in range(level-1):
 		tempAttack += tempAttack/3
 	attackStrength = tempAttack
 	AttackPowerText.text = str(tempAttack)

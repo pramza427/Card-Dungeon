@@ -59,7 +59,7 @@ position = Vector2(20, 20)
 
 [node name="HealingContainer" type="MarginContainer" parent="."]
 offset_left = 20.0
-offset_top = 376.0
+offset_top = 200.0
 offset_right = 284.0
 offset_bottom = 512.0
 
@@ -85,14 +85,13 @@ theme_override_constants/margin_left = 10
 [node name="HBox" type="HBoxContainer" parent="HealingContainer/VBox/HBox/Heal/Margin"]
 layout_mode = 2
 
-[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBox/Heal/Margin/HBox"]
-layout_mode = 2
-texture = ExtResource("4_6jnfl")
-expand_mode = 3
-
 [node name="Cost" type="Label" parent="HealingContainer/VBox/HBox/Heal/Margin/HBox"]
 layout_mode = 2
 text = "1"
+
+[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBox/Heal/Margin/HBox"]
+layout_mode = 2
+texture = ExtResource("4_6jnfl")
 
 [node name="HBox5" type="HBoxContainer" parent="HealingContainer/VBox"]
 layout_mode = 2
@@ -113,14 +112,13 @@ theme_override_constants/margin_left = 10
 [node name="HBox" type="HBoxContainer" parent="HealingContainer/VBox/HBox5/Heal5/Margin"]
 layout_mode = 2
 
-[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBox5/Heal5/Margin/HBox"]
-layout_mode = 2
-texture = ExtResource("4_6jnfl")
-expand_mode = 3
-
 [node name="Cost" type="Label" parent="HealingContainer/VBox/HBox5/Heal5/Margin/HBox"]
 layout_mode = 2
 text = "5"
+
+[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBox5/Heal5/Margin/HBox"]
+layout_mode = 2
+texture = ExtResource("4_6jnfl")
 
 [node name="HBox10" type="HBoxContainer" parent="HealingContainer/VBox"]
 layout_mode = 2
@@ -140,14 +138,13 @@ theme_override_constants/margin_left = 10
 [node name="HBox" type="HBoxContainer" parent="HealingContainer/VBox/HBox10/Heal10/Margin"]
 layout_mode = 2
 
-[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBox10/Heal10/Margin/HBox"]
-layout_mode = 2
-texture = ExtResource("4_6jnfl")
-expand_mode = 3
-
 [node name="Cost" type="Label" parent="HealingContainer/VBox/HBox10/Heal10/Margin/HBox"]
 layout_mode = 2
 text = "10"
+
+[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBox10/Heal10/Margin/HBox"]
+layout_mode = 2
+texture = ExtResource("4_6jnfl")
 
 [node name="HBoxAll" type="HBoxContainer" parent="HealingContainer/VBox"]
 layout_mode = 2
@@ -160,25 +157,20 @@ text = "Heal All"
 
 [node name="Margin" type="MarginContainer" parent="HealingContainer/VBox/HBoxAll/HealAll"]
 offset_left = 264.0
-offset_right = 325.0
+offset_right = 326.0
 offset_bottom = 28.0
 theme_override_constants/margin_left = 10
 
 [node name="HBox" type="HBoxContainer" parent="HealingContainer/VBox/HBoxAll/HealAll/Margin"]
 layout_mode = 2
 
-[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBoxAll/HealAll/Margin/HBox"]
-layout_mode = 2
-texture = ExtResource("4_6jnfl")
-expand_mode = 3
-
 [node name="Cost" type="Label" parent="HealingContainer/VBox/HBoxAll/HealAll/Margin/HBox"]
 layout_mode = 2
 text = "50"
 
+[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBoxAll/HealAll/Margin/HBox"]
+layout_mode = 2
+texture = ExtResource("4_6jnfl")
+
 [connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="pressed" from="Margin/LeaveShop" to="." method="_on_leave_shop_pressed"]
-[connection signal="pressed" from="HealingContainer/VBox/HBox/Heal" to="." method="_on_heal_pressed"]
-[connection signal="pressed" from="HealingContainer/VBox/HBox5/Heal5" to="." method="_on_heal_5_pressed"]
-[connection signal="pressed" from="HealingContainer/VBox/HBox10/Heal10" to="." method="_on_heal_10_pressed"]
-[connection signal="pressed" from="HealingContainer/VBox/HBoxAll/HealAll" to="." method="_on_heal_all_pressed"]

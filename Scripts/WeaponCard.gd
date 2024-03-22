@@ -31,12 +31,12 @@ func _ready():
 	$InfoContainer/Margin/Info/BludgeonContainer/Multi.text = str(CardInfo[5], "x")
 	$InfoContainer/Margin/Info/PierceContainer/Multi.text = str(CardInfo[6], "x")
 	
-	$ShopCost/Center/HBox/Margin/Coin.scale *= Vector2(20, 20)/($ShopCost/Center/HBox/Margin/Coin.texture.get_size())
-	$ShopCost/Center/HBox/Cost.text = str(CardInfo[7])
+	$ShopCost/Margin/Center/HBox/Margin/Coin.scale *= Vector2(20, 20)/($ShopCost/Margin/Center/HBox/Margin/Coin.texture.get_size())
+	$ShopCost/Margin/Center/HBox/Cost.text = str(CardInfo[7])
 	
 
 
-var ZoomInSize = 1.5
+var ZoomInSize = 1.1
 var ZoomInTime = 0.2
 var setup = true
 var startscale = Vector2()

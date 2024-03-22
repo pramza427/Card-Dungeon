@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cborbpl4sgn0q"]
+[gd_scene load_steps=17 format=3 uid="uid://cborbpl4sgn0q"]
 
 [ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_s00ji"]
 [ext_resource type="Texture2D" uid="uid://c8wncditunibt" path="res://Assets/Art/bg.png" id="2_ntfse"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://umx31t5dhhmx" path="res://Assets/GUI Elements/weapon_bg.png" id="10_fhaiq"]
 [ext_resource type="Texture2D" uid="uid://b7yphi2liwjr8" path="res://Assets/GUI Elements/shield_bg.png" id="11_gm66h"]
 [ext_resource type="Texture2D" uid="uid://ba1xb8a11i0ww" path="res://Assets/GUI Elements/green_btn.png" id="15_xfriw"]
+[ext_resource type="PackedScene" uid="uid://ht0urhfod0mm" path="res://Scenes/shop.tscn" id="16_6o5jf"]
 [ext_resource type="Texture2D" uid="uid://bxv7hxv75l1h6" path="res://Assets/GUI Elements/red_btn.png" id="16_jb2iu"]
 [ext_resource type="Script" path="res://Scripts/Deck.gd" id="17_edk26"]
 
@@ -23,8 +24,6 @@ script = ExtResource("1_s00ji")
 position = Vector2(960.75, 541.999)
 scale = Vector2(3.75879, 2.10938)
 texture = ExtResource("2_ntfse")
-
-[node name="Hand" type="Node" parent="."]
 
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(0, 800)
@@ -101,6 +100,36 @@ text = "24"
 layout_mode = 2
 texture = ExtResource("10_fhaiq")
 
+[node name="FloorMargin" type="MarginContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+
+[node name="FloorCenter" type="CenterContainer" parent="FloorMargin"]
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="FloorMargin/FloorCenter"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Margin" type="MarginContainer" parent="FloorMargin/FloorCenter/HBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="Floor" type="Label" parent="FloorMargin/FloorCenter/HBox"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Floor:"
+
+[node name="FloorNumber" type="Label" parent="FloorMargin/FloorCenter/HBox"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "1"
+
 [node name="GUI" type="MarginContainer" parent="."]
 offset_top = 966.0
 offset_right = 1922.0
@@ -167,6 +196,8 @@ theme_override_font_sizes/font_size = 30
 text = "Discard"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Hand" type="Node" parent="."]
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("5_7qbib")
@@ -291,6 +322,9 @@ layout_mode = 2
 texture = ExtResource("11_gm66h")
 
 [node name="InPlay" type="Node" parent="."]
+
+[node name="Shop" parent="." instance=ExtResource("16_6o5jf")]
+position = Vector2(0, 1080)
 
 [connection signal="pressed" from="GUI/Actions/MarginContainer/MarginContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="GUI/Actions/MarginContainer/MarginContainer/HBoxContainer/Discard" to="." method="_on_discard_pressed"]

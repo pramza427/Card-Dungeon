@@ -17,12 +17,18 @@ func _ready():
 	pass
 	
 
-func heal(percent = 20):
+func healPercent(percent = 20):
 	health = min(health + maxHealth / 100, maxHealth)
 	HPBar.value = int(float(health)/maxHealth * 100)
 	HPText.text = str(health)
 	
+
+func healValue(num = 1):
+	health += num
+	HPBar.value = int(float(health)/maxHealth * 100)
+	HPText.text = str(health)
 	
+
 func takeDamage(num = 20):
 	health -= num
 	HPText.text = str(health)
@@ -31,4 +37,8 @@ func takeDamage(num = 20):
 
 func addCoins(num = 5):
 	coins += num
-	CoinNumber.text = coins
+	CoinNumber.text = str(coins)
+	
+func removeCoins(num = 1):
+	coins -= num
+	CoinNumber.text = str(coins)
