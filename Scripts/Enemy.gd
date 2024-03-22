@@ -2,7 +2,6 @@ extends Node
 
 @onready var HPBar = $EnemyInfo/HealthBar
 @onready var HPText = $EnemyInfo/Margin/Margin/Health
-@onready var LevelText = $EnemyInfo/LevelContainer/LevelNumber
 @onready var AttackPowerText = $EnemyInfo/AttackContainer/AttackPower
 
 var fullHealth = 0
@@ -12,6 +11,7 @@ var lastHealth = 0
 var attackStrength = 0
 
 var level = 1
+var coins = 5
 
 func _ready():
 	setLevel()
@@ -33,9 +33,16 @@ func setAttack():
 	attackStrength = tempAttack
 	AttackPowerText.text = str(tempAttack)
 	
+func setCoins():
+	var baseAmount = 5
+	for n in range(level-1):
+		coins += baseAmount
+		
+
 func setLevel():
 	setHealth()
 	setAttack()
+	setCoins()
 
 
 func _process(delta):

@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ht0urhfod0mm"]
+[gd_scene load_steps=7 format=3 uid="uid://ht0urhfod0mm"]
 
 [ext_resource type="Script" path="res://Scripts/shop.gd" id="1_afe23"]
 [ext_resource type="Texture2D" uid="uid://byc4qkkaqila3" path="res://Assets/Art/shop_bg.png" id="2_ym5xi"]
 [ext_resource type="Texture2D" uid="uid://iuobd2knypsu" path="res://Assets/GUI Elements/Coin.png" id="4_6jnfl"]
+[ext_resource type="Texture2D" uid="uid://ba2gs3oxssay3" path="res://Assets/GUI Elements/label_HP_bg.png" id="4_wa1d2"]
 [ext_resource type="Texture2D" uid="uid://ba1xb8a11i0ww" path="res://Assets/GUI Elements/green_btn.png" id="6_regow"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mfwtl"]
+blend_mode = 2
 
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_afe23")
@@ -54,131 +58,79 @@ text = "Leave"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+material = SubResource("CanvasItemMaterial_mfwtl")
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 360.0
+offset_bottom = 230.0
+texture = ExtResource("4_wa1d2")
+
 [node name="WeaponCards" type="Node2D" parent="."]
 position = Vector2(20, 20)
 
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 20.0
+offset_top = 411.0
+offset_right = 284.0
+offset_bottom = 532.0
+texture = ExtResource("4_wa1d2")
+
 [node name="HealingContainer" type="MarginContainer" parent="."]
 offset_left = 20.0
-offset_top = 376.0
+offset_top = 411.0
 offset_right = 284.0
-offset_bottom = 512.0
+offset_bottom = 532.0
 
 [node name="VBox" type="VBoxContainer" parent="HealingContainer"]
 layout_mode = 2
 
+[node name="Center" type="CenterContainer" parent="HealingContainer/VBox"]
+layout_mode = 2
+
+[node name="HBoxCost" type="HBoxContainer" parent="HealingContainer/VBox/Center"]
+layout_mode = 2
+
+[node name="HPAmount" type="Label" parent="HealingContainer/VBox/Center/HBoxCost"]
+layout_mode = 2
+
+[node name="HPPer" type="Label" parent="HealingContainer/VBox/Center/HBoxCost"]
+layout_mode = 2
+text = "1 HP /"
+
+[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/Center/HBoxCost"]
+layout_mode = 2
+texture = ExtResource("4_6jnfl")
+expand_mode = 3
+
 [node name="HBox" type="HBoxContainer" parent="HealingContainer/VBox"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 5
 
 [node name="Heal" type="Button" parent="HealingContainer/VBox/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Heal"
 
-[node name="Margin" type="MarginContainer" parent="HealingContainer/VBox/HBox/Heal"]
-layout_mode = 0
-offset_left = 264.0
-offset_right = 326.0
-offset_bottom = 28.0
-theme_override_constants/margin_left = 10
-
-[node name="HBox" type="HBoxContainer" parent="HealingContainer/VBox/HBox/Heal/Margin"]
-layout_mode = 2
-
-[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBox/Heal/Margin/HBox"]
-layout_mode = 2
-texture = ExtResource("4_6jnfl")
-expand_mode = 3
-
-[node name="Cost" type="Label" parent="HealingContainer/VBox/HBox/Heal/Margin/HBox"]
-layout_mode = 2
-text = "1"
-
-[node name="HBox5" type="HBoxContainer" parent="HealingContainer/VBox"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Heal5" type="Button" parent="HealingContainer/VBox/HBox5"]
+[node name="Heal5" type="Button" parent="HealingContainer/VBox/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Heal 5
 "
 
-[node name="Margin" type="MarginContainer" parent="HealingContainer/VBox/HBox5/Heal5"]
-offset_left = 264.0
-offset_right = 326.0
-offset_bottom = 28.0
-theme_override_constants/margin_left = 10
-
-[node name="HBox" type="HBoxContainer" parent="HealingContainer/VBox/HBox5/Heal5/Margin"]
-layout_mode = 2
-
-[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBox5/Heal5/Margin/HBox"]
-layout_mode = 2
-texture = ExtResource("4_6jnfl")
-expand_mode = 3
-
-[node name="Cost" type="Label" parent="HealingContainer/VBox/HBox5/Heal5/Margin/HBox"]
-layout_mode = 2
-text = "5"
-
-[node name="HBox10" type="HBoxContainer" parent="HealingContainer/VBox"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Heal10" type="Button" parent="HealingContainer/VBox/HBox10"]
+[node name="Heal10" type="Button" parent="HealingContainer/VBox/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Heal 10"
 
-[node name="Margin" type="MarginContainer" parent="HealingContainer/VBox/HBox10/Heal10"]
-offset_left = 264.0
-offset_right = 326.0
-offset_bottom = 28.0
-theme_override_constants/margin_left = 10
-
-[node name="HBox" type="HBoxContainer" parent="HealingContainer/VBox/HBox10/Heal10/Margin"]
-layout_mode = 2
-
-[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBox10/Heal10/Margin/HBox"]
-layout_mode = 2
-texture = ExtResource("4_6jnfl")
-expand_mode = 3
-
-[node name="Cost" type="Label" parent="HealingContainer/VBox/HBox10/Heal10/Margin/HBox"]
-layout_mode = 2
-text = "10"
-
-[node name="HBoxAll" type="HBoxContainer" parent="HealingContainer/VBox"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="HealAll" type="Button" parent="HealingContainer/VBox/HBoxAll"]
+[node name="HealAll" type="Button" parent="HealingContainer/VBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Heal All"
 
-[node name="Margin" type="MarginContainer" parent="HealingContainer/VBox/HBoxAll/HealAll"]
-offset_left = 264.0
-offset_right = 325.0
-offset_bottom = 28.0
-theme_override_constants/margin_left = 10
-
-[node name="HBox" type="HBoxContainer" parent="HealingContainer/VBox/HBoxAll/HealAll/Margin"]
-layout_mode = 2
-
-[node name="Coin" type="TextureRect" parent="HealingContainer/VBox/HBoxAll/HealAll/Margin/HBox"]
-layout_mode = 2
-texture = ExtResource("4_6jnfl")
-expand_mode = 3
-
-[node name="Cost" type="Label" parent="HealingContainer/VBox/HBoxAll/HealAll/Margin/HBox"]
-layout_mode = 2
-text = "50"
-
 [connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="pressed" from="Margin/LeaveShop" to="." method="_on_leave_shop_pressed"]
 [connection signal="pressed" from="HealingContainer/VBox/HBox/Heal" to="." method="_on_heal_pressed"]
-[connection signal="pressed" from="HealingContainer/VBox/HBox5/Heal5" to="." method="_on_heal_5_pressed"]
-[connection signal="pressed" from="HealingContainer/VBox/HBox10/Heal10" to="." method="_on_heal_10_pressed"]
-[connection signal="pressed" from="HealingContainer/VBox/HBoxAll/HealAll" to="." method="_on_heal_all_pressed"]
+[connection signal="pressed" from="HealingContainer/VBox/HBox/Heal5" to="." method="_on_heal_5_pressed"]
+[connection signal="pressed" from="HealingContainer/VBox/HBox/Heal10" to="." method="_on_heal_10_pressed"]
+[connection signal="pressed" from="HealingContainer/VBox/HealAll" to="." method="_on_heal_all_pressed"]

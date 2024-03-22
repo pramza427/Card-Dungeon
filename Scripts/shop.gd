@@ -4,7 +4,7 @@ extends Node2D
 @onready var WeaponCard = preload("res://Scenes/weapon_card.tscn")
 
 var MarginBetweenCards = 10
-var NumOfWeapons = 3
+var NumOfWeapons = 2
 
 var ShopTransitionTime = 1.0
 var OutOfViewPos = Vector2()
@@ -13,7 +13,7 @@ var StartPos = Vector2()
 var setup = true
 var t = 0
 var DoneAnimating = true
-
+var Coins = 0
 
 enum {
 	Hide,
@@ -65,6 +65,8 @@ func setupShop():
 	
 
 func spawnWeapons():
+	for c in $WeaponCards.get_children():
+		$WeaponCards.remove_child(c)
 	var weaponSize = WeaponsData["WEAPONS"].size()
 	for n in range(NumOfWeapons):
 		
@@ -81,22 +83,22 @@ func spawnWeapons():
 
 func setupHealing():
 	var player = $'../Player'
-	var health = player.maxHealth - player.health
-	$HealingContainer/VBox/HBoxAll/HealAll/Margin/HBox/Cost.text = str(health)
-	if health < 10:
-		$HealingContainer/VBox/HBox10/Heal10.disabled = true
+	var missingHealth = player.maxHealth - player.health
+	var coins = player.coins
+	if missingHealth < 10 || coins < 10:
+		$HealingContainer/VBox/HBox/Heal10.disabled = true
 	else: 
-		$HealingContainer/VBox/HBox10/Heal10.disabled = false
-	if health < 5:
-		$HealingContainer/VBox/HBox5/Heal5.disabled = true
+		$HealingContainer/VBox/HBox/Heal10.disabled = false
+	if missingHealth < 5 || coins < 5:
+		$HealingContainer/VBox/HBox/Heal5.disabled = true
 	else: 
-		$HealingContainer/VBox/HBox5/Heal5.disabled = false
-	if health <= 0:
+		$HealingContainer/VBox/HBox/Heal5.disabled = false
+	if missingHealth <= 0 || coins <= 0:
 		$HealingContainer/VBox/HBox/Heal.disabled = true
-		$HealingContainer/VBox/HBoxAll/HealAll.disabled = true
+		$HealingContainer/VBox/HealAll.disabled = true
 	else: 
 		$HealingContainer/VBox/HBox/Heal.disabled = false
-		$HealingContainer/VBox/HBoxAll/HealAll.disabled = false
+		$HealingContainer/VBox/HealAll.disabled = false
 	
 	
 	
@@ -144,7 +146,7 @@ func _on_heal_10_pressed():
 
 
 func _on_heal_all_pressed():
-	var healing = int($HealingContainer/VBox/HBoxAll/HealAll/Margin/HBox/Cost.text)
+	var healing = $'../Player'.maxHealth - $'../Player'.health
 	$'../Player'.removeCoins(healing)
 	$'../Player'.healValue(healing)
 	setupHealing()

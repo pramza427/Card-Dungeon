@@ -75,7 +75,7 @@ func playCards():
 		var power = info[3]
 		match type:
 			0:
-				defenseTotal += power
+				$Player.addShield(power)
 				pass
 			1:
 				attackTotal += power
@@ -98,6 +98,7 @@ func playCards():
 	$Enemy.health -= attackFinal
 	
 	if $Enemy.health <= 0:
+		$Player.addCoins($Enemy.coins)
 		remove_child($Enemy)
 		clearBoard()
 	else:

@@ -9,28 +9,11 @@
 script = ExtResource("1_ulxeh")
 
 [node name="EnemyInfo" type="VBoxContainer" parent="."]
-offset_left = 1829.0
+offset_left = 1800.0
 offset_top = 1.0
-offset_right = 1924.0
+offset_right = 1895.0
 offset_bottom = 783.0
 size_flags_horizontal = 8
-
-[node name="LevelContainer" type="VBoxContainer" parent="EnemyInfo"]
-layout_mode = 2
-
-[node name="Level" type="Label" parent="EnemyInfo/LevelContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "Level:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LevelNumber" type="Label" parent="EnemyInfo/LevelContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="AttackContainer" type="VBoxContainer" parent="EnemyInfo"]
 layout_mode = 2
