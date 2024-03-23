@@ -13,6 +13,14 @@ var drawingCards = []
 var currentHand = []
 var currentPlay = []
 var currentLevel = 0
+var discards = 1
+
+var AttackTotal = 0
+var AttackMulti = 1
+var DefenseTotal = 0
+var DefenseMulti = 1
+
+var currentPlayedCard = 0
 
 func _ready() :
 	pass
@@ -45,71 +53,95 @@ func renderNewCards():
 		$Hand.add_child(NewCard)
 		currentHand.append(card)
 	drawingCards.clear()
-	organiseCards()
+	organiseCards($Hand, 350)
 	
 
-func organiseCards():
-	var allCardsWidth = CardSize.x * currentHand.size()
+func organiseCards(parent, bottomOffset):
+	var margin = 10
+	var allCardsWidth = CardSize.x * parent.get_child_count()
 	var start = 100
-	var steps = CardSize.x
+	var steps = CardSize.x + margin
 	# if enough space for the cards then just print them side to side
 	if allCardsWidth < get_viewport().size.x - 200:
 		start = (get_viewport().size.x - allCardsWidth) / 2
 	# if not enough space then reduce step count by the total overlap / number of cards
 	else:
-		steps -= (allCardsWidth - (get_viewport().size.x - 200)) / currentHand.size()
-	for card in $Hand.get_children():
-		card.targetpos = Vector2(start, get_viewport().size.y - 350)
+		steps -= (allCardsWidth - (get_viewport().size.x - 200)) / parent.get_child_count()
+	for card in parent.get_children():
+		card.targetpos = Vector2(start, get_viewport().size.y - bottomOffset)
 		card.CardPos = card.targetpos
 		start += steps
 	
-
-func playCards():
-	var attackTotal = 0
-	var attackMulti = 1
-	var defenseTotal = 0
-	var defenseMulti = 1
-	for card in $InPlay.get_children():
+func _physics_process(delta):
+	pass
+	
+func playNextCard():
+	if currentPlayedCard < $InPlay.get_child_count():
+		var card = $InPlay.get_child(currentPlayedCard)
+		card.trigger()
 		var info = card.CardInfo
-		var type = info[1]
-		var power = info[3]
+		var type = info[card.Type]
+		var power = info[card.Attack]
+		var multi = info[card.Multi]
 		match type:
 			0:
-				$Player.addShield(power)
-				pass
+				DefenseTotal += power
+				DefenseMulti *= multi
 			1:
-				attackTotal += power
-				pass
+				AttackTotal += power
+				AttackMulti *= multi
 			2:
-				attackTotal += power
-				pass
+				AttackTotal += power
+				AttackMulti *= multi
 			3:
-				attackTotal += power
-				pass
+				AttackTotal += power
+				AttackMulti *= multi
 			4:
-				attackTotal += power
-				pass
-		$InPlay.remove_child(card)
-		$Deck.discard(info)
-	var attackFinal = attackTotal * attackMulti
-	if attackFinal > HighestAttack:
-		HighestAttack = attackFinal 
+				AttackTotal += power
+				AttackMulti *= multi
+		
+		$AttackContainer/Center/VBox/HBox/BaseAttack.text = str(AttackTotal)
+		$AttackContainer/Center/VBox/HBox/Multiplier.text = str(AttackMulti)
+		$AttackContainer/Center/VBox/TotalAttack.text = str(AttackTotal * AttackMulti)
+		currentPlayedCard += 1
+	else:
+		currentPlayedCard = 0
+		attack()
+		
+
+func attack():
+	$Player.addShield(DefenseTotal * DefenseMulti)
 	
-	$Enemy.health -= attackFinal
+	$Enemy.health -= AttackTotal * AttackMulti
 	
 	if $Enemy.health <= 0:
 		$Player.addCoins($Enemy.coins)
 		remove_child($Enemy)
 		clearBoard()
 	else:
+		clearInPlay()
 		$Player.takeDamage($Enemy.attackStrength)
 		drawNewCards()
+	
 
-
+func clearInPlay():
+	AttackTotal = 0
+	AttackMulti = 1
+	DefenseTotal = 0
+	DefenseMulti = 1
+	$AttackContainer/Center/VBox/HBox/BaseAttack.text = str(AttackTotal)
+	$AttackContainer/Center/VBox/HBox/Multiplier.text = str(AttackMulti)
+	$AttackContainer/Center/VBox/TotalAttack.text = str(AttackTotal * AttackMulti)
+	for card in $InPlay.get_children():
+		$Deck.discard(card.CardInfo)
+		$InPlay.remove_child(card)
+		
+	
 func clearBoard():
 	drawingCards.clear()
 	currentHand.clear()
 	currentPlay.clear()
+	clearInPlay()
 	for c in $Hand.get_children():
 		$Deck.discard(c.CardInfo)
 		$Hand.remove_child(c)
@@ -120,20 +152,22 @@ func clearBoard():
 
 func _on_play_pressed():
 	for card in $Hand.get_children():
-		if card.state == 3:
+		if card.state == card.Selected:
 			currentHand.erase(card.CardInfo)
 			currentPlay.append(card.CardInfo)
 			$Hand.remove_child(card)
 			$InPlay.add_child(card)
-			card.state = 4
-		else:
-			card.setup = true
-	playCards()
+			card.state = card.InPlay
+		card.setup = true
+	organiseCards($InPlay, 550)
+	organiseCards($Hand, 350)
+	playNextCard()
+	
 
 
 func _on_discard_pressed():
 	for card in $Hand.get_children():
-		if card.state == 3:
+		if card.state == card.Selected:
 			currentHand.erase(card.CardInfo)
 			$Deck.discard(card.CardInfo)
 			$Hand.remove_child(card)

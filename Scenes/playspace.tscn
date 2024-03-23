@@ -25,6 +25,85 @@ position = Vector2(960.75, 541.999)
 scale = Vector2(3.75879, 2.10938)
 texture = ExtResource("2_ntfse")
 
+[node name="AttackContainer" type="MarginContainer" parent="."]
+offset_left = 684.0
+offset_top = 64.0
+offset_right = 1243.0
+offset_bottom = 195.0
+
+[node name="Center" type="CenterContainer" parent="AttackContainer"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="AttackContainer/Center"]
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="AttackContainer/Center/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BaseAttack" type="Label" parent="AttackContainer/Center/VBox/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "0"
+
+[node name="X" type="Label" parent="AttackContainer/Center/VBox/HBox"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "X"
+
+[node name="Multiplier" type="Label" parent="AttackContainer/Center/VBox/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "1"
+
+[node name="TotalAttack" type="Label" parent="AttackContainer/Center/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0, 0.827451, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FloorMargin" type="MarginContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+
+[node name="FloorCenter" type="CenterContainer" parent="FloorMargin"]
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="FloorMargin/FloorCenter"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Margin" type="MarginContainer" parent="FloorMargin/FloorCenter/HBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="Floor" type="Label" parent="FloorMargin/FloorCenter/HBox"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Floor:"
+
+[node name="FloorNumber" type="Label" parent="FloorMargin/FloorCenter/HBox"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "1"
+
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(0, 800)
 script = ExtResource("17_edk26")
@@ -99,36 +178,6 @@ text = "24"
 [node name="DeckDraw" type="TextureRect" parent="Deck/Margin/HBox/DrawPileContainer"]
 layout_mode = 2
 texture = ExtResource("10_fhaiq")
-
-[node name="FloorMargin" type="MarginContainer" parent="."]
-offset_right = 1920.0
-offset_bottom = 60.0
-size_flags_horizontal = 3
-
-[node name="FloorCenter" type="CenterContainer" parent="FloorMargin"]
-layout_mode = 2
-
-[node name="HBox" type="HBoxContainer" parent="FloorMargin/FloorCenter"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Margin" type="MarginContainer" parent="FloorMargin/FloorCenter/HBox"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-
-[node name="Floor" type="Label" parent="FloorMargin/FloorCenter/HBox"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "Floor:"
-
-[node name="FloorNumber" type="Label" parent="FloorMargin/FloorCenter/HBox"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "1"
 
 [node name="GUI" type="MarginContainer" parent="."]
 offset_top = 966.0

@@ -121,7 +121,6 @@ func _on_hidden():
 	$'../'.nextLevel()
 	pass
 	
-	
 
 
 func _on_heal_pressed():
