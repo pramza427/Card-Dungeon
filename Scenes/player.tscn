@@ -132,3 +132,5 @@ texture = ExtResource("9_av7sn")
 [node name="Shield" type="TextureRect" parent="PlayerInfo/Weapons"]
 layout_mode = 2
 texture = ExtResource("10_twgyd")
+
+[node name="Weapons" type="Node2D" parent="."]

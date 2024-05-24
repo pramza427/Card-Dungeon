@@ -85,12 +85,13 @@ func Setup():
 	
 
 func buyCard():
-	#$'../../Player'.Weapons.append(this)
-	pass
+	$'../../../Player'.addWeapon(self)
+	
 
 func _on_buy_pressed():
-	state = InInventory
-	pass # Replace with function body.
+	match state:
+		InShop, Hovered:
+			buyCard()
 
 
 func _on_buy_mouse_entered():

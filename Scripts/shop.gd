@@ -83,24 +83,8 @@ func spawnWeapons():
 
 func setupHealing():
 	var player = $'../Player'
-	var missingHealth = player.maxHealth - player.health
-	var coins = player.coins
-	if missingHealth < 10 || coins < 10:
-		$HealingContainer/VBox/HBox/Heal10.disabled = true
-	else: 
-		$HealingContainer/VBox/HBox/Heal10.disabled = false
-	if missingHealth < 5 || coins < 5:
-		$HealingContainer/VBox/HBox/Heal5.disabled = true
-	else: 
-		$HealingContainer/VBox/HBox/Heal5.disabled = false
-	if missingHealth <= 0 || coins <= 0:
-		$HealingContainer/VBox/HBox/Heal.disabled = true
-		$HealingContainer/VBox/HealAll.disabled = true
-	else: 
-		$HealingContainer/VBox/HBox/Heal.disabled = false
-		$HealingContainer/VBox/HealAll.disabled = false
-	
-	
+	if player.coins < 20 || (player.maxHealth == player.health):
+		$HealingContainer/Margin/VBox/Heal.disabled = true
 	
 
 func showShop():
@@ -124,29 +108,10 @@ func _on_hidden():
 
 
 func _on_heal_pressed():
-	$'../Player'.removeCoins(1)
-	$'../Player'.healValue(1)
+	$'../Player'.removeCoins(20)
+	$'../Player'.healPercent(30)
 	setupHealing()
-	pass # Replace with function body.
 
 
-func _on_heal_5_pressed():
-	$'../Player'.removeCoins(5)
-	$'../Player'.healValue(5)
-	setupHealing()
-	pass # Replace with function body.
-
-
-func _on_heal_10_pressed():
-	$'../Player'.removeCoins(10)
-	$'../Player'.healValue(10)
-	setupHealing()
-	pass # Replace with function body.
-
-
-func _on_heal_all_pressed():
-	var healing = $'../Player'.maxHealth - $'../Player'.health
-	$'../Player'.removeCoins(healing)
-	$'../Player'.healValue(healing)
-	setupHealing()
-	pass # Replace with function body.
+func _on_shuffle_shop_pressed():
+	spawnWeapons()

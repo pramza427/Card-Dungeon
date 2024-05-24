@@ -1,5 +1,5 @@
 
-enum {Buckler, KiteShield, TowerShield, Sword, Axe, MorningStar, Dagger, LongSword, BattleAxe, Flail, Rapier, Claymore, GreatAxe, GrandMace, Spear}
+enum {Buckler, Targe, KiteShield, TowerShield, Sword, Axe, MorningStar, Dagger, LongSword, BattleAxe, Flail, Rapier, Claymore, GreatAxe, GrandMace, Spear}
 enum {Name, Hand, Defend, Slash, Chop, Bludgeon, Pierce, Price, Sell}
 # Multiplier based on attack type
 const WEAPONS = {
@@ -8,25 +8,37 @@ const WEAPONS = {
 		{
 			Name: "Buckler",
 			Hand: 1,
+			Defend: 2,
+			Slash : 1,
+			Chop : 1, 
+			Bludgeon : 1, 
+			Pierce : 1,
+			Price: 10,
+			Sell: 3
+		},
+	Targe :
+		{
+			Name: "Targe",
+			Hand: 1,
 			Defend: 3,
 			Slash : 1,
 			Chop : 1, 
 			Bludgeon : 1, 
 			Pierce : 1,
 			Price: 20,
-			Sell: 2
+			Sell: 5
 		},
 	KiteShield :
 		{
 			Name: "KiteShield",
 			Hand: 1,
 			Defend: 5,
-			Slash : 3,
-			Chop : 2, 
-			Bludgeon : 0, 
+			Slash : 1,
+			Chop : 1, 
+			Bludgeon : 1, 
 			Pierce : 1,
-			Price: 20,
-			Sell: 2
+			Price: 30,
+			Sell: 8
 		},
 	TowerShield :
 		{
@@ -37,8 +49,8 @@ const WEAPONS = {
 			Chop : 1, 
 			Bludgeon : 1, 
 			Pierce : 1,
-			Price: 20,
-			Sell: 2
+			Price: 60,
+			Sell: 20
 		},
 	## Small Weapons
 	Sword :

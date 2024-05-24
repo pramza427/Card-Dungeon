@@ -9,6 +9,7 @@ var health = 0
 var lastHealth = 0
 
 var attackStrength = 0
+var t = 1
 
 var level = 1
 var coins = 5
@@ -44,10 +45,34 @@ func setLevel():
 	setAttack()
 	setCoins()
 
+func takeDamage(val = 20):
+	health -= val
+	t = 0
+	$AnimationPlayer.play("TakeDamage")
+	return health
 
+	
+func attack():
+	$AnimationPlayer.play("Attack")
+	return attackStrength
+
+
+var reduceHealthTime = 1.2
 func _process(delta):
-	if lastHealth != health:
+	if t <= 1:
+		HPText.text = str(int(lastHealth - ((lastHealth-health)*t)))
+		HPBar.value = int(((float(lastHealth) - ((lastHealth-health)*t))/fullHealth)*100)
+		t += delta/float(reduceHealthTime)
+	else:
 		HPText.text = str(health)
-		HPBar.value = int((float(health)/fullHealth)*100)
+		HPBar.value = int((float(lastHealth)/fullHealth)*100)
 		lastHealth = health
 
+
+
+func _on_animation_player_animation_finished(anim_name):
+	match anim_name:
+		"TakeDamage":
+			$'../'.takeDamage()
+		"Attack":
+			$'../'.drawNewCards()

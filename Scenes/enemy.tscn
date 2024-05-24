@@ -1,9 +1,86 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfalebi1ly3ra"]
+[gd_scene load_steps=10 format=3 uid="uid://cfalebi1ly3ra"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_ulxeh"]
 [ext_resource type="Texture2D" uid="uid://ba2gs3oxssay3" path="res://Assets/GUI Elements/label_HP_bg.png" id="2_5xd2v"]
 [ext_resource type="Texture2D" uid="uid://cd0fvpqcm2buy" path="res://Assets/GUI Elements/EnemyHealthBG.png" id="3_uhyng"]
 [ext_resource type="Texture2D" uid="uid://codqe8ci1ouha" path="res://Assets/GUI Elements/EnemyHealthProgress.png" id="4_48ete"]
+[ext_resource type="Texture2D" uid="uid://gbpokdmbj5jl" path="res://Assets/Art/monster.png" id="5_vtquq"]
+
+[sub_resource type="Animation" id="Animation_u7x20"]
+resource_name = "Attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1608, 354), Vector2(1638, 356), Vector2(886, 406), Vector2(1608, 354)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.261799, -0.261799, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dthpb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1608, 354)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xmieg"]
+resource_name = "TakeDamage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(2.07053, 2, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1608, 354), Vector2(1678, 356), Vector2(1578, 354), Vector2(1480, 354), Vector2(1630, 360), Vector2(1608, 354)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u66wi"]
+_data = {
+"Attack": SubResource("Animation_u7x20"),
+"RESET": SubResource("Animation_dthpb"),
+"TakeDamage": SubResource("Animation_xmieg")
+}
 
 [node name="Enemy" type="Node"]
 script = ExtResource("1_ulxeh")
@@ -61,3 +138,15 @@ value = 100.0
 fill_mode = 3
 texture_under = ExtResource("3_uhyng")
 texture_progress = ExtResource("4_48ete")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1608, 354)
+scale = Vector2(1.52083, 1.52083)
+texture = ExtResource("5_vtquq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u66wi")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

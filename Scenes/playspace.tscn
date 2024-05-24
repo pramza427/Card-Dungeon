@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cborbpl4sgn0q"]
+[gd_scene load_steps=21 format=3 uid="uid://cborbpl4sgn0q"]
 
 [ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_s00ji"]
 [ext_resource type="Texture2D" uid="uid://c8wncditunibt" path="res://Assets/Art/bg.png" id="2_ntfse"]
@@ -17,7 +17,64 @@
 [ext_resource type="Texture2D" uid="uid://bxv7hxv75l1h6" path="res://Assets/GUI Elements/red_btn.png" id="16_jb2iu"]
 [ext_resource type="Script" path="res://Scripts/Deck.gd" id="17_edk26"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a51j6"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.352572, 4.42201e-07, 1.44392e-07, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkb85"]
+bg_color = Color(0.581284, 0.0954367, 0.761816, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.173715, 0.00713967, 0.239466, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8t2d"]
+bg_color = Color(0, 0.27451, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.000384685, 0.0903038, 0.406003, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wybuw"]
+bg_color = Color(0.581284, 0.0954367, 0.761816, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.173715, 0.00713967, 0.239466, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+shadow_offset = Vector2(2, 2)
+
 [node name="Playspace" type="Node2D"]
+rotation = -0.000654884
 script = ExtResource("1_s00ji")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -25,48 +82,195 @@ position = Vector2(960.75, 541.999)
 scale = Vector2(3.75879, 2.10938)
 texture = ExtResource("2_ntfse")
 
-[node name="AttackContainer" type="MarginContainer" parent="."]
+[node name="CalcContainer" type="MarginContainer" parent="."]
 offset_left = 684.0
 offset_top = 64.0
 offset_right = 1243.0
 offset_bottom = 195.0
 
-[node name="Center" type="CenterContainer" parent="AttackContainer"]
+[node name="Center" type="CenterContainer" parent="CalcContainer"]
 layout_mode = 2
 
-[node name="VBox" type="VBoxContainer" parent="AttackContainer/Center"]
+[node name="VBox" type="VBoxContainer" parent="CalcContainer/Center"]
 layout_mode = 2
 
-[node name="HBox" type="HBoxContainer" parent="AttackContainer/Center/VBox"]
+[node name="AttackLine" type="HBoxContainer" parent="CalcContainer/Center/VBox"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="BaseAttack" type="Label" parent="AttackContainer/Center/VBox/HBox"]
+[node name="AttackLabel" type="Label" parent="CalcContainer/Center/VBox/AttackLine"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "Attack:"
+
+[node name="MarginAttack" type="MarginContainer" parent="CalcContainer/Center/VBox/AttackLine"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="Panel" parent="CalcContainer/Center/VBox/AttackLine/MarginAttack"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a51j6")
+
+[node name="Center" type="CenterContainer" parent="CalcContainer/Center/VBox/AttackLine/MarginAttack"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CalcContainer/Center/VBox/AttackLine/MarginAttack/Center"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="BaseAttack" type="Label" parent="CalcContainer/Center/VBox/AttackLine/MarginAttack/Center/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 41
 text = "0"
 
-[node name="X" type="Label" parent="AttackContainer/Center/VBox/HBox"]
+[node name="X" type="Label" parent="CalcContainer/Center/VBox/AttackLine"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 41
 text = "X"
 
-[node name="Multiplier" type="Label" parent="AttackContainer/Center/VBox/HBox"]
+[node name="MarginMultiplier" type="MarginContainer" parent="CalcContainer/Center/VBox/AttackLine"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="Panel" parent="CalcContainer/Center/VBox/AttackLine/MarginMultiplier"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qkb85")
+
+[node name="Center" type="CenterContainer" parent="CalcContainer/Center/VBox/AttackLine/MarginMultiplier"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CalcContainer/Center/VBox/AttackLine/MarginMultiplier/Center"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Multiplier" type="Label" parent="CalcContainer/Center/VBox/AttackLine/MarginMultiplier/Center/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 41
 text = "1"
 
-[node name="TotalAttack" type="Label" parent="AttackContainer/Center/VBox"]
+[node name="=" type="Label" parent="CalcContainer/Center/VBox/AttackLine"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.682353, 0, 0.827451, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "="
+
+[node name="TotalAttack" type="Label" parent="CalcContainer/Center/VBox/AttackLine"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.956863, 0, 0.419608, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefenseLine" type="HBoxContainer" parent="CalcContainer/Center/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="DefenseLabel" type="Label" parent="CalcContainer/Center/VBox/DefenseLine"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "Defense"
+
+[node name="MarginDefense" type="MarginContainer" parent="CalcContainer/Center/VBox/DefenseLine"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="Panel" parent="CalcContainer/Center/VBox/DefenseLine/MarginDefense"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m8t2d")
+
+[node name="Center" type="CenterContainer" parent="CalcContainer/Center/VBox/DefenseLine/MarginDefense"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CalcContainer/Center/VBox/DefenseLine/MarginDefense/Center"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="BaseDefense" type="Label" parent="CalcContainer/Center/VBox/DefenseLine/MarginDefense/Center/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "0"
+
+[node name="X" type="Label" parent="CalcContainer/Center/VBox/DefenseLine"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "X"
+
+[node name="MarginMultiplier2" type="MarginContainer" parent="CalcContainer/Center/VBox/DefenseLine"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="Panel" parent="CalcContainer/Center/VBox/DefenseLine/MarginMultiplier2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wybuw")
+
+[node name="Center" type="CenterContainer" parent="CalcContainer/Center/VBox/DefenseLine/MarginMultiplier2"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CalcContainer/Center/VBox/DefenseLine/MarginMultiplier2/Center"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Multiplier" type="Label" parent="CalcContainer/Center/VBox/DefenseLine/MarginMultiplier2/Center/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "1"
+
+[node name="=" type="Label" parent="CalcContainer/Center/VBox/DefenseLine"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "="
+
+[node name="TotalDefense" type="Label" parent="CalcContainer/Center/VBox/DefenseLine"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.27451, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40

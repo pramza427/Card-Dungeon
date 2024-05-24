@@ -3,6 +3,13 @@ extends Node2D
 const CardBase = preload("res://Assets/Cards/card_base.tscn")
 const Enemy = preload("res://Scenes/enemy.tscn")
 @onready var FloorNumber = $FloorMargin/FloorCenter/HBox/FloorNumber
+@onready var BaseAttackElem = $CalcContainer/Center/VBox/AttackLine/MarginAttack/Center/Margin/BaseAttack
+@onready var AttackMultiElem = $CalcContainer/Center/VBox/AttackLine/MarginMultiplier/Center/Margin/Multiplier
+@onready var TotalAttackElem = $CalcContainer/Center/VBox/AttackLine/TotalAttack
+		
+@onready var BaseDefenseElem = $CalcContainer/Center/VBox/DefenseLine/MarginDefense/Center/Margin/BaseDefense
+@onready var DefenseMultiElem = $CalcContainer/Center/VBox/DefenseLine/MarginMultiplier2/Center/Margin/Multiplier
+@onready var TotalDefenseElem = $CalcContainer/Center/VBox/DefenseLine/TotalDefense
 
 const CardSize = Vector2(125, 175)
 
@@ -15,9 +22,9 @@ var currentPlay = []
 var currentLevel = 0
 var discards = 1
 
-var AttackTotal = 0
+var BaseAttack = 0
 var AttackMulti = 1
-var DefenseTotal = 0
+var BaseDefense = 0
 var DefenseMulti = 1
 
 var currentPlayedCard = 0
@@ -85,24 +92,28 @@ func playNextCard():
 		var multi = info[card.Multi]
 		match type:
 			0:
-				DefenseTotal += power
+				BaseDefense += power
 				DefenseMulti *= multi
 			1:
-				AttackTotal += power
+				BaseAttack += power
 				AttackMulti *= multi
 			2:
-				AttackTotal += power
+				BaseAttack += power
 				AttackMulti *= multi
 			3:
-				AttackTotal += power
+				BaseAttack += power
 				AttackMulti *= multi
 			4:
-				AttackTotal += power
+				BaseAttack += power
 				AttackMulti *= multi
 		
-		$AttackContainer/Center/VBox/HBox/BaseAttack.text = str(AttackTotal)
-		$AttackContainer/Center/VBox/HBox/Multiplier.text = str(AttackMulti)
-		$AttackContainer/Center/VBox/TotalAttack.text = str(AttackTotal * AttackMulti)
+		BaseAttackElem.text = str(BaseAttack)
+		AttackMultiElem.text = str(AttackMulti)
+		TotalAttackElem.text = str(BaseAttack * AttackMulti)
+		
+		BaseDefenseElem.text = str(BaseDefense)
+		DefenseMultiElem.text = str(DefenseMulti)
+		TotalDefenseElem.text = str(BaseDefense * DefenseMulti)
 		currentPlayedCard += 1
 	else:
 		currentPlayedCard = 0
@@ -110,28 +121,32 @@ func playNextCard():
 		
 
 func attack():
-	$Player.addShield(DefenseTotal * DefenseMulti)
+	$Player.addShield(BaseDefense * DefenseMulti)
+	$Enemy.takeDamage(BaseAttack * AttackMulti)
 	
-	$Enemy.health -= AttackTotal * AttackMulti
 	
-	if $Enemy.health <= 0:
+func takeDamage():
+	var remainingHealth = $Enemy.health
+	if remainingHealth <= 0:
 		$Player.addCoins($Enemy.coins)
 		remove_child($Enemy)
 		clearBoard()
 	else:
 		clearInPlay()
-		$Player.takeDamage($Enemy.attackStrength)
-		drawNewCards()
+		$Player.takeDamage($Enemy.attack())
 	
 
 func clearInPlay():
-	AttackTotal = 0
+	BaseAttack = 0
 	AttackMulti = 1
-	DefenseTotal = 0
+	BaseDefense = 0
 	DefenseMulti = 1
-	$AttackContainer/Center/VBox/HBox/BaseAttack.text = str(AttackTotal)
-	$AttackContainer/Center/VBox/HBox/Multiplier.text = str(AttackMulti)
-	$AttackContainer/Center/VBox/TotalAttack.text = str(AttackTotal * AttackMulti)
+	BaseAttackElem.text = str(BaseAttack)
+	AttackMultiElem.text = str(AttackMulti)
+	TotalAttackElem.text = str(BaseAttack * AttackMulti)
+	BaseDefenseElem.text = str(BaseDefense)
+	DefenseMultiElem.text = str(DefenseMulti)
+	TotalDefenseElem.text = str(BaseDefense * DefenseMulti)
 	for card in $InPlay.get_children():
 		$Deck.discard(card.CardInfo)
 		$InPlay.remove_child(card)
@@ -148,7 +163,7 @@ func clearBoard():
 	remove_child($Enemy)
 	$Deck.reset()
 	$Shop.setupShop()
-
+	
 
 func _on_play_pressed():
 	for card in $Hand.get_children():
